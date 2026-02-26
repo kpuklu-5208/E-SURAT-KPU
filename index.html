@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>E-SURAT KPU KLU</title>
+    <style>
+        /* Menghilangkan margin dan memastikan iframe memenuhi layar */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Warna latar belakang agar senada dengan aplikasi */
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe 
+        src="https://script.google.com/macros/s/AKfycbzzaisQXUajgj_JC0cdzC-IkqNVdNCdQpwKxhbjHwGO82izif8J6739xtuB-Exh5Psw/exec" 
+        allow="geolocation; camera; microphone"
+        allowfullscreen>
+    </iframe>
+
+    <script>
+        /**
+         * Catatan: Browser modern melarang Fullscreen otomatis tanpa klik user.
+         * Kode di bawah ini adalah fallback jika Anda ingin mencoba tetap memaksa,
+         * namun disarankan akses via browser langsung dengan HTTPS.
+         */
+        window.onload = function() {
+            const docElm = document.documentElement;
+            const requestFullscreen = docElm.requestFullscreen || docElm.mozRequestFullScreen || docElm.webkitRequestFullScreen || docElm.msRequestFullscreen;
+            
+            // Mencoba masuk fullscreen saat pertama kali layar diklik (agar diizinkan browser)
+            document.body.addEventListener('click', function() {
+                if (requestFullscreen) {
+                    docElm.requestFullscreen().catch(err => {
+                        console.log("Fullscreen diblokir browser sebelum ada interaksi user.");
+                    });
+                }
+            }, { once: true });
+        };
+    </script>
+</body>
+</html>
